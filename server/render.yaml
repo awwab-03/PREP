@@ -1,0 +1,26 @@
+# Render Blueprint for the PrepAI backend.
+# In Render: New → Blueprint → point at this repo (root dir = server).
+services:
+  - type: web
+    name: prepai-api
+    runtime: node
+    rootDir: server
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false # set in the Render dashboard
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: OPENAI_API_KEY
+        sync: false # set in the Render dashboard
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
+      - key: CLIENT_URL
+        sync: false # set to your Vercel URL

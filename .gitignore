@@ -1,0 +1,10 @@
+# Root-level ignores (client/ and server/ have their own too)
+node_modules/
+
+# Local editor / harness config
+.claude/
+.env
+.env.local
+dist/
+.DS_Store
+*.log
